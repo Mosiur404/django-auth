@@ -1,0 +1,35 @@
+{% extends '../main.html' %} {% block content %}
+
+<!-- Hero -->
+<div class="hero">
+  <h1>
+    {% if user.is_authenticated %} Hello {{user.username|title}} {% else %}
+    Welcome to bookstore {% endif %}
+  </h1>
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}}">
+    <strong>Message:</strong> {{message}}
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Hero -->
+<!-- Content  -->
+<div class="container">
+  {% if user.is_authenticated %}
+  <h2 class="section-title">My Profile</h2>
+  <div><strong>Firstname: </strong>{{user.first_name}}</div>
+  <div><strong>Lastname: </strong>{{user.last_name}}</div>
+  <div><strong>Registered: </strong>{{user.date_joined}}</div>
+  {% else %}
+  <h2 class="section-title">You are not logged in</h2>
+  <button class="menu-item">
+    <a href="/signin">LOGIN</a>
+  </button>
+  <button class="menu-item">
+    <a href="/signup">REGISTER</a>
+  </button>
+  {% endif %}
+</div>
+<!-- Content  -->
+{% endblock%}

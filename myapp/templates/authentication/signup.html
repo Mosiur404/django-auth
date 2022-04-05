@@ -1,0 +1,65 @@
+{% extends '../main.html' %} {% block content %}
+<!-- Hero -->
+<div class="hero">
+  <h1>Register</h1>
+</div>
+<!-- Hero -->
+<!-- Content  -->
+<div class="container">
+  <form class="cFlex" action="" method="post">
+    {% csrf_token %}
+    <div class="main-form">
+      <div class="form-control mb-3">
+        <label for="fname">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          value="{{username}}"
+        />
+      </div>
+      <div class="form-control mb-3">
+        <label for="fname">First name</label>
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="Firstname"
+          value="{{fname}}"
+        />
+      </div>
+      <div class="form-control mb-3">
+        <label for="lname">Last name</label>
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          placeholder="Last name"
+          value="{{lname}}"
+        />
+      </div>
+      <div class="form-control mb-3">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email Address"
+          value="{{email}}"
+        />
+      </div>
+      <div class="form-control mb-3">
+        <label for="pass">Password</label>
+        <input type="password" id="password" name="password" placeholder="" />
+      </div>
+      <div class="form-control mb-3">
+        <label for="confirm-pass">Confirm Password</label>
+        <input type="password" id="confirm-pass" name="confirm-pass" />
+      </div>
+      <button class="btn" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<!-- Content  -->
+{% endblock%}

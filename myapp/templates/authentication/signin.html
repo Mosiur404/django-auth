@@ -1,0 +1,34 @@
+{% extends '../main.html' %} {% block content %}
+<!-- Hero -->
+<div class="hero">
+  <h1>Login</h1>
+</div>
+
+<!-- Hero -->
+<!-- Content  -->
+<div class="container">
+  <form class="cFlex" action="/signin" method="POST">
+    {% csrf_token %}
+    <!-- error message -->
+    {% for message in messages %}
+    <div class="mb-3 alert alert-{{message.tags}}">
+      <strong>Message:</strong> {{message}}
+      <br />
+    </div>
+    {% endfor %}
+    <!-- error message -->
+    <div class="main-form">
+      <div class="form-control mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value="{{username}}" />
+      </div>
+      <div class="form-control mb-3">
+        <label for="pass">Password</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <button class="btn" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<!-- Content  -->
+{% endblock%}
