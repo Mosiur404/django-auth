@@ -9,6 +9,23 @@ def home(request):
     return render(request, "authentication/index.html")
 
 
+def signin(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return render(request, "authentication/index.html")
+        else:
+            messages.error(request, "Bad Credentials")
+            return render(request, "authentication/signin.html", {"username": username})
+
+    return render(request, "authentication/signin.html")
+
+
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -24,7 +41,6 @@ def signup(request):
             "lname": lname or "",
             "email": email or "",
         }
-        print(formData)
         # validation start
         if User.objects.filter(username=username):
             messages.error(request, "Username already exists!")
@@ -54,25 +70,6 @@ def signup(request):
         return redirect("signin")
 
     return render(request, "authentication/signup.html")
-
-
-def signin(request):
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            fname = user.first_name
-            return render(request, "authentication/index.html", {"fname": fname})
-        else:
-            messages.error(request, "Bad Credentials")
-            return render(request, "authentication/signin.html", {"username": username})
-
-    return render(request, "authentication/signin.html")
 
 
 def signout(request):
